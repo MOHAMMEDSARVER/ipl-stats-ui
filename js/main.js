@@ -1,10 +1,11 @@
 
 google.charts.load('current', { 'packages': ['corechart'] });
 let rols= new Set();
+ var link="https://ipl-stats-server.onrender.com";
 
 function showTeamNames(){
     const idShowTeamNames=document.getElementById("idShowTeamNames");
-    getData('http://localhost:8081/iplstats/api/v1/teamnames').then(data=>{
+    getData(link+'/iplstats/api/v1/teamnames').then(data=>{
         data=getTeamNames(data);
         idShowTeamNames.innerHTML=data;
     });
