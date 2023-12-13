@@ -36,7 +36,7 @@ function showTeamRoleCountrycount(){
 function showPlayers(){
   var teamName= document.getElementById("idTeamName");
   var tname=teamName.value;
-  getData('http://localhost:8081/iplstats/api/v1/players/'+encodeURIComponent(tname)).then(data=>{
+  getData(link+'/iplstats/api/v1/players/'+encodeURIComponent(tname)).then(data=>{
     console.log('members of the team '+data);
     showPlayersTable(data);
   });
@@ -86,7 +86,7 @@ async function getData(url){
 
 function showTeamAmountStats(){
     console.log("showTeamAmountStats");
-    fetch('http://localhost:8081/iplstats/api/v1/players').then(JSON=>JSON.json()).then(res=>{
+    fetch(link+'/iplstats/api/v1/players').then(JSON=>JSON.json()).then(res=>{
         console.log(res);
     });
 
@@ -95,7 +95,7 @@ showTeamNames();
 
 
 function teamNames(){
-fetch('http://localhost:8081/iplstats/api/v1/teamnames')
+fetch(link+'/iplstats/api/v1/teamnames')
   .then(response => {
     // Check if the response status is OK (200)
     if (!response.ok) {
@@ -128,7 +128,7 @@ function drawTeamRoleCountryCountstats(){
   var role=document.getElementById("idRoleName").value;
 
   let headings=["Country Name","Player Count"];
-  getData('http://localhost:8081/iplstats/api/v1/countrycountstats/'+encodeURIComponent(team)+'/'+encodeURIComponent(role)).then(data=>{
+  getData(link+'/iplstats/api/v1/countrycountstats/'+encodeURIComponent(team)+'/'+encodeURIComponent(role)).then(data=>{
     let inputdata=[];
     data.forEach(ele=>{
       inputdata.push([ele.countryName,ele.count]);
@@ -142,7 +142,7 @@ function drawTeamRoleCountryCountstats(){
 }
 function drawCountryCountStats(){
   let headings=["Country Name","Player Count"];
-  getData('http://localhost:8081/iplstats/api/v1/countrycountstats').then(data=>{
+  getData(link+'/iplstats/api/v1/countrycountstats').then(data=>{
     let inputdata=[];
     data.forEach(ele=>{
       inputdata.push([ele.countryName,ele.count]);
@@ -154,7 +154,7 @@ function drawCountryCountStats(){
 }
 function drawRoleAmountstats(){
   let headings=["Role","Amount"];
-  getData('http://localhost:8081/iplstats/api/v1/roleamountstats').then(data=>{
+  getData(link+'/iplstats/api/v1/roleamountstats').then(data=>{
     let inputdata=[];
     data.forEach(ele=>{
       inputdata.push([ele.rollName,ele.totalAmount]);
@@ -169,7 +169,7 @@ function showTeamRoleAmountStats(){
   let headings=["Role","Amount"];
   var teamName= document.getElementById("idTeamName");
   var tname=teamName.value;
-  getData('http://localhost:8081/iplstats/api/v1/teamroleamountstats/'+encodeURIComponent(tname)).then(data=>{
+  getData(link+'/iplstats/api/v1/teamroleamountstats/'+encodeURIComponent(tname)).then(data=>{
     console.log("team role amount stats "+data);
     let inputdata=[];
     data.forEach(ele=>{
@@ -202,7 +202,7 @@ function drawPieChart(inputdata, headings, title, idName)
 
 function drawTeamStats(){
   let headings=["Team","Amount"];
-  getData('http://localhost:8081/iplstats/api/v1/teamamountstat').then(data=>{
+  getData(link+'/iplstats/api/v1/teamamountstat').then(data=>{
     let inputdata =[];
     data.forEach(team => {
       inputdata.push([team.teamName,team.totalAmount]);
